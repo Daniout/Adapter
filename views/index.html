@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enviar Correo</title>
+</head>
+<body>
+  <h1>Enviar Correo (usando Adapter)</h1>
+  <form id="emailForm">
+    <label>Correo: <input type="email" name="email" required /></label><br />
+    <label>Asunto: <input type="text" name="subject" required /></label><br />
+    <label>Mensaje: <textarea name="body" required></textarea></label><br />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="response"></p>
+
+  <script>
+    document.getElementById('emailForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const data = Object.fromEntries(form.entries());
+
+      const res = await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const text = await res.text();
+      document.getElementById('response').innerText = text;
+    });
+  </script>
+</body>
+</html>

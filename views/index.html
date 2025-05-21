@@ -2,18 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enviar Correo</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Enviar Correo (usando Adapter)</h1>
-  <form id="emailForm">
-    <label>Correo: <input type="email" name="email" required /></label><br />
-    <label>Asunto: <input type="text" name="subject" required /></label><br />
-    <label>Mensaje: <textarea name="body" required></textarea></label><br />
-    <button type="submit">Enviar</button>
-  </form>
+  <div class="container">
+    <h1>Enviar Correo</h1>
+    <form id="emailForm">
+      <label for="email">Correo electrónico</label>
+      <input type="email" name="email" id="email" placeholder="destinatario@ejemplo.com" required />
 
-  <p id="response"></p>
+      <label for="subject">Asunto</label>
+      <input type="text" name="subject" id="subject" placeholder="Asunto del correo" required />
+
+      <label for="body">Mensaje</label>
+      <textarea name="body" id="body" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+      <button type="submit">
+        ✉️ <span>Enviar mensaje</span>
+      </button>
+    </form>
+    <p id="response"></p>
+  </div>
 
   <script>
     document.getElementById('emailForm').addEventListener('submit', async (e) => {
